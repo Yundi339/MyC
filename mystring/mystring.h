@@ -17,7 +17,7 @@ private:
 	bool _SetString(const char* str); // 写入字符数组
 	bool _MoveString(char* &str); // 移动字符数组
 	bool _UnSafeMoveString(char*& str, size_t& size); // 不安全移动字符数组
-	bool _CompareLength(size_t& size); // 判断目标大小是否超出字符串的最大长度
+	const bool _CompareLength(size_t& size); // 判断目标大小是否超出字符串的最大长度
 public:
 	// 默认构造函数
 	String();
@@ -64,6 +64,6 @@ public:
 	String& operator +=(const String& other);
 
 	// 重载 == 操作符
-	bool operator ==(const char* str);
-	bool operator ==(const String& other);
+	const bool operator ==(const char* str);
+	const bool operator ==(const String& other);
 };

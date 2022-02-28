@@ -3,7 +3,7 @@
 
 
 // 判断目标大小是否超出字符串的最大长度
-bool String::_CompareLength(size_t& size)
+const bool String::_CompareLength(size_t& size)
 {
 	return size + 1 > String::_LIMIT_STRING_SIZE;
 }
@@ -147,7 +147,7 @@ String::~String()
 // 重载 [] 操作符
 // (char)Elem1 = (String) Elem2[index]
 // (String)Elem1[index] = (char) Elem2
-char& String::operator [](size_t index) throw(std::range_error)
+char& String::operator [](size_t index)
 {
 	//std::cout << "index" << index << std::endl;
 	if (index >= _size)	{
@@ -232,7 +232,7 @@ String& String::operator +=(const char ch)
 {
 	//std::cout << "operator +=(const char ch)" << std::endl;
 	if (_str == NULL) {
-		throw std::exception("NullPointerException", NULL);
+		throw std::runtime_error("Null Pointer");
 	}
 	size_t t_size = _size + 1;
 	// 超出字符串最大限制长度
@@ -253,10 +253,10 @@ String& String::operator +=(const char* str)
 {
 	//std::cout << "operator +=(const char* str)" << std::endl;
 	if (_str == NULL) {
-		throw std::exception("NullPointerException", NULL);
+		throw std::runtime_error("Null Pointer");
 	}
 	if (str == NULL) {
-		throw std::exception("NullPointerException", NULL);
+		throw std::runtime_error("Null Pointer");
 	}
 	size_t t_size = strlen(str) + _size;
 	// 超出字符串最大限制长度
@@ -278,10 +278,10 @@ String& String::operator +=(const String& other)
 {
 	//std::cout << "operator +=(const String& other)" << std::endl;
 	if (_str == NULL) {
-		throw std::exception("NullPointerException", NULL);
+		throw std::runtime_error("Null Pointer");
 	}
 	if (other._str == NULL) {
-		throw std::exception("NullPointerException", NULL);
+		throw std::runtime_error("Null Pointer");
 	}
 	*this += other._str;
 	return *this;
@@ -323,7 +323,7 @@ const String String::operator +(const String& other)
 
 // 重载 == 操作符
 // (String) Elem1 == (char[]) Elem2
-bool String::operator ==(const char* str)
+const bool String::operator ==(const char* str)
 {
 	if (_str == NULL || str == NULL){
 		return false;
@@ -338,7 +338,7 @@ bool String::operator ==(const char* str)
 
 // 重载 == 操作符
 // (String) Elem1 == (String) Elem2
-bool String::operator ==(const String& other)
+const bool String::operator ==(const String& other)
 {
 	if (*this == other) {
 		return true;
